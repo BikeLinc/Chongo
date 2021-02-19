@@ -3,18 +3,33 @@ package entities;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.util.vector.Vector3f;
 
+import models.RawModel;
 import models.TexturedModel;
+import renderEngine.Loader;
+import renderEngine.OBJLoader;
+import textures.ModelTexture;
 
-public class Entity {
+public class EntityTextured3D {
 
 	private TexturedModel model;
 	private Vector3f position;
 	private float rotX, rotY, rotZ;
 	private float scale;
 	
-	public Entity(TexturedModel model, Vector3f position, float rotX, float rotY, float rotZ, float scale) {
-		super();
+	public EntityTextured3D(TexturedModel model, Vector3f position, float rotX, float rotY, float rotZ, float scale) {
 		this.model = model;
+		this.position = position;
+		this.rotX = rotX;
+		this.rotY = rotY;
+		this.rotZ = rotZ;
+		this.scale = scale;
+	}
+	
+	public EntityTextured3D(String obj, String texture, Vector3f position, float rotX, float rotY, float rotZ, float scale) {
+		Loader loader = new Loader();
+		RawModel model = OBJLoader.loadObjModel(obj, loader);
+		TexturedModel staticModel = new TexturedModel(model, new ModelTexture(loader.loadTexture(texture)));
+		this.model = staticModel;
 		this.position = position;
 		this.rotX = rotX;
 		this.rotY = rotY;

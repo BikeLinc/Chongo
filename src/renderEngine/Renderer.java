@@ -7,7 +7,8 @@ import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
 import org.lwjgl.util.vector.Matrix4f;
 
-import entities.Entity;
+import entities.EntityTextured3D;
+import entities.Scene;
 import models.RawModel;
 import models.TexturedModel;
 import shaders.StaticShader;
@@ -40,7 +41,13 @@ public class Renderer {
 		return projectionMatrix;
 	}
 	
-	public  void render(Entity entity, StaticShader shader) {
+	public void renderScene(Scene scene, StaticShader shader) {
+		for(EntityTextured3D entity : scene.getEntityTextured3Ds()) {
+			render(entity, shader);
+		}
+	}
+	
+	public  void render(EntityTextured3D entity, StaticShader shader) {
 		TexturedModel model = entity.getModel();
 		RawModel rawModel = model.getRawModel();
 		GL30.glBindVertexArray(rawModel.getVaoID());
