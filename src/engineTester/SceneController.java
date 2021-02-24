@@ -4,22 +4,30 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 
 import entities.Camera;
-import entities.EntityTextured3D;
 import entities.Scene;
 
+
+// TODO: Scene Controller Send Object In inf Loop
 public class SceneController {
 	
 	Scene scene;
 	Camera camera;
+
+	// Input Pressed
 	boolean x, y, z, e, r, mouse_right, mouse_left;
+	
+	// Position or Rotation Mode
 	boolean pos = true;
 	boolean rot = false;
+	
+	// Mouse Values
 	int mouse_x, mouse_y, mouse_middle;
 	int x_last = 0;
 	int y_last = 0;
 	int mouse_last = 0;
 	
-	float sensitivity = 0.5f;
+	// Moiuse
+	float sensitivity = 0.05f;
 	float posSensitivity = 0.5f;
 	
 	public SceneController(Scene scene, Camera camera) {
@@ -111,7 +119,6 @@ public class SceneController {
 		x_last = mouse_x;
 		y_last = mouse_y;
 		mouse_last = mouse_middle;
-		scene.update();
 	}
 	
 }

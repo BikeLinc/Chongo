@@ -11,23 +11,22 @@ public class Scene {
 	Vector3f position = new Vector3f(0,0,0);
 	Vector3f rotation = new Vector3f(0,0,0);
 	
-	public void update() {
-		for(EntityTextured3D entity : getEntityTextured3Ds()) {
-			entity.increasePosition(position.x, position.y, position.z);
-			entity.increaseRotation(rotation.x, rotation.y, rotation.z);
-		}
-	}
-	
 	public void increasePosition(float dx, float dy, float dz) {
 		this.position.x += dx;
 		this.position.y += dy;
 		this.position.z += dz;
+		for(EntityTextured3D entity : getEntityTextured3Ds()) {
+			entity.increasePosition(position.x, position.y, position.z);
+		}
 	}
 	
 	public void increaseRotation(float dx, float dy, float dz) {
 		this.rotation.x += dx;
 		this.rotation.y += dy;
 		this.rotation.z += dz;
+		for(EntityTextured3D entity : getEntityTextured3Ds()) {
+			entity.increaseRotation(rotation.x, rotation.y, rotation.z);
+		}
 	}
 	
 	public void addEntityTextured3D(EntityTextured3D entity) {
